@@ -1,22 +1,39 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(
-        HomePage());
-}
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+import './screens/category_meals_screen.dart';
+import './screens/categories_screen.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Meal Box'),
-        ),
-        body: Center(
-          child: Text('Welcome to Meal Box restaurant'),
-        ),
+      title: 'DeliMeals',
+      theme: ThemeData(
+        primarySwatch: Colors.pink,
+        hintColor: Colors.amber,
+        canvasColor: Color.fromRGBO(255, 254, 229, 1),
+        fontFamily: 'Raleway',
+        textTheme: ThemeData.light().textTheme.copyWith(
+            bodyLarge: const TextStyle(
+              color: Color.fromRGBO(20, 51, 51, 1),
+            ),
+            bodyMedium: const TextStyle(
+              color: Color.fromRGBO(20, 51, 51, 1),
+            ),
+            titleLarge: const TextStyle(
+              fontSize: 20,
+              fontFamily: 'RobotoCondensed',
+              fontWeight: FontWeight.bold,
+            )),
       ),
+      // home: CategoriesScreen(),
+      initialRoute: '/', // default is '/'
+      routes: {
+        '/': (ctx) => CategoriesScreen(),
+        CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
+      },
     );
   }
 }
